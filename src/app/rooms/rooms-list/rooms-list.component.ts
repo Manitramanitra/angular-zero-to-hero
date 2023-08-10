@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { RoomList } from '../rooms';
 
 @Component({
   selector: 'app-rooms-list',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./rooms-list.component.scss']
 })
 export class RoomsListComponent {
+ @Input() rooms: RoomList[] = []
+ @Output() selectedRoom = new EventEmitter<RoomList>()
 
+ selectRoom(room: RoomList){
+  this.selectedRoom.emit(room)
+  console.log(room)
+ }
 }

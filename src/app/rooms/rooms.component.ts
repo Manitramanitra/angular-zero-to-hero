@@ -8,12 +8,20 @@ import { Room, RoomList } from './rooms';
 })
 export class RoomsComponent {
   constructor() {}
+  rooms: Room = {
+    totalRooms: 20,
+    availableRooms: 10,
+    bookedRooms: 5,
+  };
 
   hotelName = '';
 
   numberOfRooms = 10;
 
+  roomList: RoomList[] = []
+
   hideRooms = false;
+
   ngOnInit(): void {
     this.hotelName = 'Hotel donaka'
     this.roomList = [
@@ -55,17 +63,16 @@ export class RoomsComponent {
       }
     ]
   }
+ 
   toggle() {
     this.hideRooms = !this.hideRooms;
   }
 
-  rooms: Room = {
-    totalRooms: 20,
-    availableRooms: 10,
-    bookedRooms: 5,
-  };
+  
 
-  roomList: RoomList[] = []
-    
+  roomSelect!: RoomList;
+  selectRoom(room: RoomList){
+    this.roomSelect=room
+  }
 
 }

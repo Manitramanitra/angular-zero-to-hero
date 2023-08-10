@@ -8,30 +8,13 @@
 <div *ngIf="rooms === undefined">No rooms</div>
 
 <div *ngIf="rooms.availableRooms > 0">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Room number</th>
-        <th>Room Title</th>
-        <th>Ameneties</th>
-        <th>Room price</th>
-        <th>Checkout time</th>
-        <th>checkint time</th>
-      </tr>
-    </thead>
-      <tr
-        [ngClass]="e ? 'even' : 'odd'"
-        *ngFor="let room of roomList; let e = even; let o = odd"
-      >
-        <th>{{ room.roomNumber }}</th>
-        <th>{{ room.roomType | uppercase }}</th>
-        <th>{{ room.amenities }}</th>
-        <th>{{ room.price }}</th>
-        <th>{{ room.checkinTime | date }}</th>
-        <th>{{ room.checkoutTime | date }}</th>
-      </tr>
-    
-  </table>
+  <app-rooms-list
+    [rooms]="roomList"
+    (selectedRoom)="selectRoom($event)"
+  ></app-rooms-list>
+</div>
+<div *ngIf="roomSelect">
+  {{ roomSelect | json }}
 </div>
 <!-- [innertText] === document.querySelector(div).innerText = "numberOfRooms"-->
 <button (click)="toggle()">Toggle</button>
