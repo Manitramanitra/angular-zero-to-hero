@@ -1,4 +1,6 @@
-<p>rooms works! {{ hotelName }}</p>
+<!-- <p>rooms works! {{ hotelName }}</p -->
+<app-header></app-header>
+
 <div [hidden]="hideRooms">
   <p>nombre de chambre</p>
   <p [innerText]="numberOfRooms"></p>
@@ -6,15 +8,19 @@
 
 <!-- {{rooms?.availableRooms ?? 'No rooms'}} -->
 <div *ngIf="rooms === undefined">No rooms</div>
-
+<div *ngIf="roomSelect">
+  {{ roomSelect | json }}
+</div>
+<div>
+  <button class="btn btn-primary" (click)="addRoom()">Add Room</button>
+</div>
 <div *ngIf="rooms.availableRooms > 0">
   <app-rooms-list
     [rooms]="roomList"
     (selectedRoom)="selectRoom($event)"
+    [title]="title"
   ></app-rooms-list>
 </div>
-<div *ngIf="roomSelect">
-  {{ roomSelect | json }}
-</div>
+
 <!-- [innertText] === document.querySelector(div).innerText = "numberOfRooms"-->
 <button (click)="toggle()">Toggle</button>
